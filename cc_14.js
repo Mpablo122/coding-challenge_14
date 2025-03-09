@@ -62,4 +62,4 @@ function highlightHighPriorityTickets() {
 
 highlightHighPriorityTickets();
 
-//Task 4 
+//Task 4 -
