@@ -39,6 +39,27 @@ function createSupportTicket(customerName, issueDescription, priorityLevel) {
     ticketContainer.appendChild(ticketCard);
 }
 
-createSupportTicket("Alice Johnson", "Cannot access account", "High");
-createSupportTicket("Bob Smith", "Payment issue", "Medium");
-createSupportTicket("Charlie Davis", "Slow website", "Low");
+createSupportTicket("Boris Johnson", "No payment", "Medium");
+createSupportTicket("Donald Trump", "Payment issues", "High");
+createSupportTicket("Justin Trudeau", "Webiste Crashes", "Low");
+
+//Task 3 - Highlighting High Priority Tickets
+
+function highlightHighPriorityTickets() {
+    const highPriorityTickets = document.querySelectorAll(".priority-high");
+
+    const ticketArray = Array.from(highPriorityTickets);
+
+    ticketArray.forEach(ticket => {
+        ticket.style.backgroundColor = "red"; 
+        ticket.style.color = "white"; 
+        ticket.style.fontWeight = "bold";
+        ticket.style.border = "3px solid darkred";
+        ticket.style.padding = "10px";
+        ticket.style.borderRadius = "5px";
+    });
+}
+
+highlightHighPriorityTickets();
+
+//Task 4 
