@@ -112,7 +112,7 @@ document.addEventListener("DOMContentLoaded", function () {
     createSupportTicket("Jane Smith", "Payment issue", "Medium");
 });
 
-//Task 5 
+//Task 5 Inline Editing for Support Tickets
 document.addEventListener("DOMContentLoaded", function () {
     const ticketContainer = document.getElementById("ticketContainer");
 
