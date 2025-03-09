@@ -111,3 +111,57 @@ document.addEventListener("DOMContentLoaded", function () {
     createSupportTicket("John Doe", "Password incorrect", "High");
     createSupportTicket("Jane Smith", "Payment issue", "Medium");
 });
+
+//Task 5 
+document.addEventListener("DOMContentLoaded", function () {
+    const ticketContainer = document.getElementById("ticketContainer");
+
+    function enableEditing(event) {
+        const ticket = event.target.closest(".support-ticket");
+        if (!ticket) return;
+
+        const name = ticket.querySelector("h3").textContent;
+        const issue = ticket.querySelector("p").textContent;
+        const priority = ticket.querySelector("span").textContent.replace("Priority: ", "");
+
+        ticket.innerHTML = `
+            <input type="text" class="edit-name" value="${name}">
+            <textarea class="edit-issue">${issue}</textarea>
+            <select class="edit-priority">
+                <option value="High" ${priority === "High" ? "selected" : ""}>High</option>
+                <option value="Medium" ${priority === "Medium" ? "selected" : ""}>Medium</option>
+                <option value="Low" ${priority === "Low" ? "selected" : ""}>Low</option>
+            </select>
+            <button class="save-btn">Save</button>
+        `;
+
+        ticket.querySelector(".save-btn").addEventListener("click", function () {
+            saveEditedTicket(ticket);
+        });
+    }
+
+    function saveEditedTicket(ticket) {
+        const newName = ticket.querySelector(".edit-name").value;
+        const newIssue = ticket.querySelector(".edit-issue").value;
+        const newPriority = ticket.querySelector(".edit-priority").value;
+
+        ticket.innerHTML = `
+            <h3>${newName}</h3>
+            <p>${newIssue}</p>
+            <span>Priority: ${newPriority}</span>
+            <button class="edit-btn">Edit</button>
+            <button class="resolve-btn">Resolve</button>
+        `;
+
+        ticket.querySelector(".edit-btn").addEventListener("click", enableEditing);
+        ticket.querySelector(".resolve-btn").addEventListener("click", function () {
+            ticketContainer.removeChild(ticket);
+        });
+    }
+
+    ticketContainer.addEventListener("click", function (event) {
+        if (event.target.classList.contains("edit-btn")) {
+            enableEditing(event);
+        }
+    });
+});
