@@ -62,4 +62,52 @@ function highlightHighPriorityTickets() {
 
 highlightHighPriorityTickets();
 
-//Task 4 -
+//Task 4 - Support Ticket Resolution with Event Bubbling
+
+document.addEventListener("DOMContentLoaded", function () {
+    const ticketContainer = document.getElementById("ticketContainer");
+
+    
+    function resolveTicket(event) {
+        event.stopPropagation(); 
+        const ticket = event.target.closest(".support-ticket"); 
+        if (ticket) {
+            ticketContainer.removeChild(ticket);
+        }
+    }
+
+
+    function logTicketClick(event) {
+        console.log("A support ticket was clicked!");
+    }
+
+
+    ticketContainer.addEventListener("click", logTicketClick);
+
+    
+    function createSupportTicket(customerName, issue, priority) {
+        const ticket = document.createElement("div");
+        ticket.classList.add("support-ticket");
+
+        if (priority.toLowerCase() === "high") {
+            ticket.classList.add("priority-high"); 
+        }
+
+        ticket.innerHTML = `
+            <h3>${customerName}</h3>
+            <p>${issue}</p>
+            <span>Priority: ${priority}</span>
+            <button class="resolve-btn">Resolve</button>
+        `;
+
+    
+        ticket.querySelector(".resolve-btn").addEventListener("click", resolveTicket);
+
+    
+        ticketContainer.appendChild(ticket);
+    }
+
+    
+    createSupportTicket("John Doe", "Password incorrect", "High");
+    createSupportTicket("Jane Smith", "Payment issue", "Medium");
+});
