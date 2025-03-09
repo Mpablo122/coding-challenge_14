@@ -1,3 +1,6 @@
+//Task 1 Creating base Structure
+
+
 // Task 2 - Support Tickets Dynamic Addition
 function createSupportTicket(customerName, issueDescription, priorityLevel) {
     const ticketContainer = document.getElementById("ticketContainer");
@@ -26,7 +29,7 @@ function createSupportTicket(customerName, issueDescription, priorityLevel) {
 
     const editButton = document.createElement("button");
     editButton.textContent = "Edit";
-    editButton.classList.add("edit-btn");
+    editButton.classList.add("edit-button");
 
     
     resolveButton.addEventListener("click", () => {
