@@ -17,16 +17,24 @@ function createSupportTicket(customerName, issueDescription, priorityLevel) {
     
     const priorityLabel = document.createElement("span");
     priorityLabel.textContent = `Priority: ${priorityLevel}`;
-    priorityLabel.classList.add(`priority-${priorityLevel.toLowerCase()}`); // Adds a class based on priority
+    priorityLabel.classList.add(`priority-${priorityLevel.toLowerCase()}`); 
 
     
     const resolveButton = document.createElement("button");
     resolveButton.textContent = "Resolve";
     resolveButton.classList.add("resolve-button");
 
+    const editButton = document.createElement("button");
+    editButton.textContent = "Edit";
+    editButton.classList.add("edit-btn");
+
     
     resolveButton.addEventListener("click", () => {
         ticketCard.remove();
+    });
+
+    editButton.addEventListener("click", () => {
+        ticketCard.enableEditing();
     });
 
     
@@ -34,6 +42,7 @@ function createSupportTicket(customerName, issueDescription, priorityLevel) {
     ticketCard.appendChild(issueParagraph);
     ticketCard.appendChild(priorityLabel);
     ticketCard.appendChild(resolveButton);
+    ticketCard.appendChild(editButton);
 
     
     ticketContainer.appendChild(ticketCard);
